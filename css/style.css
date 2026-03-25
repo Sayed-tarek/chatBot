@@ -1,0 +1,293 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #242424;
+}
+
+section {
+    height: 100vh;
+}
+
+section .chat-container {
+    width: 80%;
+    margin: 0 auto;
+    max-width: 1000px;
+}
+
+section .header {
+    padding-top: 50px;
+}
+
+section .header h1 {
+    font-size: 65px;
+    width: fit-content;
+    background-clip: text;
+    background: linear-gradient(to right, #4285f4, #d96570);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0 auto 100px;
+}
+
+section .header h2 {
+    font-size: 50px;
+    color: #e3e3e3;
+}
+
+section .header p {
+    color: #a6a6a6;
+    font-size: 35px;
+}
+
+.typing_form {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #242424;
+}
+
+.typing_form .input_wrapper {
+    width: 80%;
+    max-width: 1000px;
+    position: relative;
+}
+
+.typing_form .input_wrapper input {
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+    padding: 17px 50px 17px 25px;
+    font-size: 15px;
+    border: none;
+    outline: none;
+    color: #e3e3e3;
+    background-color: #383838;
+    transition: 0.3s ease;
+}
+
+.typing_form .input_wrapper button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: transparent;
+    border: none;
+    font-size: 30px;
+    color: #e3e3e3;
+    cursor: pointer;
+    outline: none;
+    opacity: 0;
+    transition: 0.3s ease;
+}
+
+.typing_form .input_wrapper input:focus {
+    background-color: #444;
+}
+
+.typing_form .input_wrapper input:valid~button {
+    opacity: 1;
+}
+
+.chat_list {
+    margin-top: 80px;
+    height: auto;
+    padding-bottom: 120px;
+}
+
+.chat_list .massage {
+    margin-bottom: 30px;
+}
+
+.massage-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.massage-content img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    align-self: flex-start;
+}
+
+.text {
+    color: #e3e3e3;
+}
+
+.massage span {
+    color: #444;
+    cursor: pointer;
+    margin-left: 50px;
+    font-size: 20px;
+    margin-top: 5px;
+    transition: 0.3s;
+}
+
+.massage:hover span {
+    color: #e3e3e3;
+}
+
+.chat_list .massage .loading_indicator {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.chat_list .massage .loading_indicator .loading_Bar {
+    height: 11px;
+    width: 100%;
+    background: linear-gradient(to right, #4285f4, #242424, #4285f4);
+    background-position: -800px 0;
+    animation: loading 3s linear infinite;
+}
+
+.chat_list .massage .loading_indicator .loading_Bar:last-child {
+    width: 80%;
+}
+
+@keyframes loading {
+    0% {
+        background-position: -800px 0;
+    }
+
+    100% {
+        background-position: 800px 0;
+    }
+}
+
+
+/* ========================= */
+/* 📱 Tablets */
+/* ========================= */
+@media (max-width: 992px) {
+
+    section .chat-container {
+        width: 90%;
+    }
+
+    section .header h1 {
+        font-size: 45px;
+        margin-bottom: 60px;
+    }
+
+    section .header h2 {
+        font-size: 32px;
+    }
+
+    section .header p {
+        font-size: 20px;
+    }
+
+    .typing_form {
+        height: 80px;
+    }
+
+    .typing_form .input_wrapper input {
+        padding: 14px 45px 14px 20px;
+        font-size: 14px;
+    }
+
+    .typing_form .input_wrapper button {
+        font-size: 24px;
+    }
+
+    .massage-content img {
+        width: 35px;
+        height: 35px;
+    }
+
+    .text {
+        font-size: 14px;
+    }
+}
+
+
+/* ========================= */
+/* 📱 Mobile */
+/* ========================= */
+@media (max-width: 600px) {
+
+    section .header {
+        padding-top: 30px;
+    }
+
+    section .header h1 {
+        font-size: 30px;
+        margin-bottom: 40px;
+        text-align: center;
+    }
+
+    section .header h2 {
+        font-size: 22px;
+        text-align: center;
+    }
+
+    section .header p {
+        font-size: 16px;
+        text-align: center;
+    }
+
+    .chat_list {
+        margin-top: 40px;
+        padding-bottom: 100px;
+    }
+
+    .massage {
+        margin-bottom: 20px;
+    }
+
+    .massage-content {
+        gap: 8px;
+    }
+
+    .massage-content img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .text {
+        font-size: 13px;
+        line-height: 1.6;
+    }
+
+    .massage span {
+        font-size: 16px;
+        margin-left: 35px;
+    }
+
+    .typing_form {
+        height: 70px;
+    }
+
+    .typing_form .input_wrapper {
+        width: 95%;
+    }
+
+    .typing_form .input_wrapper input {
+        padding: 12px 40px 12px 15px;
+        font-size: 13px;
+    }
+
+    .typing_form .input_wrapper button {
+        font-size: 22px;
+        right: 8px;
+    }
+}
+
+
+
+/*  */
+

@@ -1,7 +1,7 @@
 const typing_form = document.querySelector(".typing_form");
 const chat_list = document.querySelector(".chat_list");
 
-const API_KEY = "AIzaSyAvKS4kOQQZpm3venqlcLOaBJj14ewnMrc"; // ❗ حط مفتاحك
+const API_KEY = "AIzaSyCNPfl0h4OlMxdfVqbtBWV-udyCoOjR-7E"; // ❗ حط مفتاحك
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${API_KEY}`;
 
 

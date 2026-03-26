@@ -1,13 +1,8 @@
 const typing_form = document.querySelector(".typing_form");
 const chat_list = document.querySelector(".chat_list");
 
-const API_KEY = "AIzaSyCNPfl0h4OlMxdfVqbtBWV-udyCoOjR-7E"; // ❗ حط مفتاحك
+const API_KEY = "AIzaSyCNPfl0h4OlMxdfVqbtBWV-udyCoOjR-7E"; // ❗ حط مفتاحك الصح
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${API_KEY}`;
-
-
-
-// 
-// 
 
 
 // ==========================
@@ -34,27 +29,43 @@ const genrateAPIResponse = async (div, userMassage) => {
 
         const data = await response.json();
 
-        const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text || "No response";
+        console.log(data); // 👈 مهم جدًا
 
-        // عرض الرد
+        // ❌ لو في Error من API
+        if (!response.ok) {
+            textElment.innerText = data.error?.message || "API Error";
+            removeLoading(div);
+            return;
+        }
+
+        const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+
+        if (!reply) {
+            textElment.innerText = "No response from AI";
+            removeLoading(div);
+            return;
+        }
+
+        // ✅ عرض الرد
         textElment.innerText = reply;
 
-        // ❌ إخفاء اللودينج
-        const loading = div.querySelector(".loading_indicator");
-        if (loading) loading.style.display = "none";
-
-        div.classList.remove("loading");
+        removeLoading(div);
 
     } catch (error) {
         textElment.innerText = "Error fetching response";
-
-        const loading = div.querySelector(".loading_indicator");
-        if (loading) loading.style.display = "none";
-
-        div.classList.remove("loading");
-
+        removeLoading(div);
         console.error(error);
     }
+};
+
+
+// ==========================
+// ❌ REMOVE LOADING
+// ==========================
+const removeLoading = (div) => {
+    const loading = div.querySelector(".loading_indicator");
+    if (loading) loading.style.display = "none";
+    div.classList.remove("loading");
 };
 
 
@@ -83,7 +94,6 @@ const showLoding = (userMassage) => {
     div.innerHTML = html;
 
     chat_list.appendChild(div);
-
     chat_list.scrollTop = chat_list.scrollHeight;
 
     genrateAPIResponse(div, userMassage);
@@ -94,7 +104,7 @@ const showLoding = (userMassage) => {
 // 📤 USER MESSAGE
 // ==========================
 const handleOutGoingChat = () => {
-    const input = typing_form.querySelector("input");
+    const input = typing_form.querySelector("input"); // لو غيرته textarea قولي
     const userMassage = input.value.trim();
 
     if (!userMassage) return;
@@ -131,7 +141,6 @@ document.addEventListener("click", (e) => {
 
         navigator.clipboard.writeText(text);
 
-        // تغيير الأيقونة
         e.target.innerText = "check";
 
         setTimeout(() => {
